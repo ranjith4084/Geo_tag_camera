@@ -18,7 +18,7 @@ class _SensorOverlayState extends State<SensorOverlay> {
   void initState() {
     super.initState();
 
-    _accSub = accelerometerEvents.listen((event) {
+    _accSub = accelerometerEventStream().listen((event) {
       if (!mounted) return;
 
       final roll =

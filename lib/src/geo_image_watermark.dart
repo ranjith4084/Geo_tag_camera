@@ -1,100 +1,143 @@
 import 'dart:io';
 import 'dart:ui' as ui;
-import 'package:flutter/widgets.dart';
+
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'camera_settings.dart';
+
 class GeoImageWatermark {
-  static Future<File> stamp({required File imageFile}) async {
+  static Future<File> stamp({
+    required File imageFile,
+    required WatermarkSettings settings,
+    required Position? cachedPosition,
+    required String cachedAddress,
+    required String compassDirection,
+  }) async {
+    final isDark = settings.theme == WatermarkTheme.dark;
+    final textColor = isDark ? Colors.white : Colors.black;
+    final cardColor = isDark ? const ui.Color(0xCC000000) : const ui.Color(0xCCFFFFFF);
+
+    /// Load original image
     final bytes = await imageFile.readAsBytes();
-    final image = await decodeImageFromList(bytes);
+    final baseImage = await decodeImageFromList(bytes);
+
+    double cropWidth = baseImage.width.toDouble();
+    double cropHeight = baseImage.height.toDouble();
+    double srcX = 0;
+    double srcY = 0;
+
+    /// Aspect Ratio Enforcer via GPU Canvas Crop
+    final targetAspect = settings.ratio == CameraRatio.ratio16_9 ? 9 / 16 : 3 / 4;
+    final currentAspect = cropWidth / cropHeight;
+
+    if (currentAspect > targetAspect) {
+      double newWidth = cropHeight * targetAspect;
+      srcX = (cropWidth - newWidth) / 2;
+      cropWidth = newWidth;
+    } else if (currentAspect < targetAspect) {
+      double newHeight = cropWidth / targetAspect;
+      srcY = (cropHeight - newHeight) / 2;
+      cropHeight = newHeight;
+    }
 
     final recorder = ui.PictureRecorder();
     final canvas = Canvas(recorder);
 
-    canvas.drawImage(image, Offset.zero, Paint());
-
-    final position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
+    canvas.drawImageRect(
+      baseImage,
+      Rect.fromLTWH(srcX, srcY, cropWidth, cropHeight),
+      Rect.fromLTWH(0, 0, cropWidth, cropHeight),
+      Paint(),
     );
 
-    String address = '';
-    try {
-      final place = (await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude,
-      ))
-          .first;
+    /// Use background cached location or fallback to fetching
+    Position gps = cachedPosition ?? await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    String address = cachedAddress;
+    
+    if (address.isEmpty) {
+      try {
+        final place = (await placemarkFromCoordinates(gps.latitude, gps.longitude)).first;
+        address = '${place.subLocality ?? ''}, ${place.locality ?? ''}, ${place.administrativeArea ?? ''}';
+      } catch (_) {}
+    }
 
-      address =
-      '${place.subLocality ?? ''}, ${place.locality ?? ''}, ${place.administrativeArea ?? ''}';
-    } catch (_) {}
+    final timeStr = DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.now());
 
+    /// Build watermark text
     final textPainter = TextPainter(
       text: TextSpan(
+        style: TextStyle(
+          fontSize: 26,
+          color: textColor,
+        ),
         children: [
           TextSpan(
-            text:
-            '📍 ${position.latitude.toStringAsFixed(6)}, ${position.longitude.toStringAsFixed(6)}\n',
-            style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFFFFFFF)),
+            text: '📍 ${gps.latitude.toStringAsFixed(6)}, ${gps.longitude.toStringAsFixed(6)} ($compassDirection)\n',
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           TextSpan(
-            text:
-            '🕒 ${DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.now())}\n',
-            style:
-            const TextStyle(fontSize: 24, color: Color(0xFFFFFFFF)),
+            text: '🕒 $timeStr\n',
           ),
           TextSpan(
             text: '🏠 $address',
-            style:
-            const TextStyle(fontSize: 24, color: Color(0xFFFFFFFF)),
           ),
         ],
       ),
       textDirection: ui.TextDirection.ltr,
-    )..layout(maxWidth: image.width.toDouble() * 0.95);
+    )..layout(maxWidth: cropWidth * 0.8);
 
-    const margin = 20.0;
-    const padding = 14.0;
+    /// Layout configuration
+    const padding = 20.0;
+    const margin = 30.0;
 
-    final offset = Offset(
-      margin,
-      image.height.toDouble() - textPainter.height - margin,
-    );
+    final totalWidth = textPainter.width + padding * 2;
+    final totalHeight = textPainter.height + padding * 2;
 
-    final bgPaint = Paint()..color = const Color(0x99000000);
+    double dx = margin;
+    double dy = margin;
 
-    final rect = Rect.fromLTWH(
-      offset.dx - padding,
-      offset.dy - padding,
-      textPainter.width + padding * 2,
-      textPainter.height + padding * 2,
-    );
+    switch (settings.position) {
+      case WatermarkPosition.bottomLeft:
+        dx = margin;
+        dy = cropHeight - totalHeight - margin;
+        break;
+      case WatermarkPosition.bottomRight:
+        dx = cropWidth - totalWidth - margin;
+        dy = cropHeight - totalHeight - margin;
+        break;
+      case WatermarkPosition.topLeft:
+        dx = margin;
+        dy = margin;
+        break;
+      case WatermarkPosition.topRight:
+        dx = cropWidth - totalWidth - margin;
+        dy = margin;
+        break;
+    }
 
+    /// Draw background card
+    final cardRect = Rect.fromLTWH(dx, dy, totalWidth, totalHeight);
     canvas.drawRRect(
-      RRect.fromRectAndRadius(rect, const Radius.circular(14)),
-      bgPaint,
+      RRect.fromRectAndRadius(cardRect, const Radius.circular(24)),
+      Paint()..color = cardColor,
     );
 
-    textPainter.paint(canvas, offset);
+    /// Draw Text
+    textPainter.paint(canvas, Offset(dx + padding, dy + padding));
 
-    final img =
-    await recorder.endRecording().toImage(image.width, image.height);
-
-    final byteData =
-    await img.toByteData(format: ui.ImageByteFormat.png);
+    /// Convert to image natively
+    final finalImage = await recorder.endRecording().toImage(cropWidth.toInt(), cropHeight.toInt());
+    final byteData = await finalImage.toByteData(format: ui.ImageByteFormat.png);
 
     final dir = await getTemporaryDirectory();
-    final out = File(
-      '${dir.path}/geo_${DateTime.now().millisecondsSinceEpoch}.png',
-    );
+    final outputFile = File('${dir.path}/geo_${DateTime.now().millisecondsSinceEpoch}.png');
+    
+    await outputFile.writeAsBytes(byteData!.buffer.asUint8List());
 
-    await out.writeAsBytes(byteData!.buffer.asUint8List());
-    return out;
+    return outputFile;
   }
 }

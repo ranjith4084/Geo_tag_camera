@@ -1,5 +1,6 @@
-name: gps_camera
+name: geo_tag_camera
 description: "A new Flutter project."
+repository: "https://github.com/ranjith/geo_tag_camera"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -31,19 +32,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-#  image_picker: ^1.0.7
   geolocator: ^10.1.0
   geocoding: ^2.1.0
   intl: ^0.19.0
   path_provider: ^2.1.2
   permission_handler: ^11.3.1
-  image: ^4.6.0
-  camera:
-  sensors_plus:
-  gallery_saver_plus: ^3.0.1
+  camera: ^0.12.0+1
+  sensors_plus: ^7.0.0
+  gallery_saver_plus: ^3.2.9
 
 dev_dependencies:
   flutter_test:
