@@ -71,7 +71,7 @@ class GeoImageWatermark {
     final textPainter = TextPainter(
       text: TextSpan(
         style: TextStyle(
-          fontSize: 26,
+          fontSize: 26 * settings.scale,
           color: textColor,
         ),
         children: [
@@ -91,8 +91,8 @@ class GeoImageWatermark {
     )..layout(maxWidth: cropWidth * 0.8);
 
     /// Layout configuration
-    const padding = 20.0;
-    const margin = 30.0;
+    final padding = 20.0 * settings.scale;
+    final margin = 30.0 * settings.scale;
 
     final totalWidth = textPainter.width + padding * 2;
     final totalHeight = textPainter.height + padding * 2;
@@ -122,7 +122,7 @@ class GeoImageWatermark {
     /// Draw background card
     final cardRect = Rect.fromLTWH(dx, dy, totalWidth, totalHeight);
     canvas.drawRRect(
-      RRect.fromRectAndRadius(cardRect, const Radius.circular(24)),
+      RRect.fromRectAndRadius(cardRect, Radius.circular(24 * settings.scale)),
       Paint()..color = cardColor,
     );
 

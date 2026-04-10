@@ -369,6 +369,25 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                         ),
                       ),
                     ),
+                    
+                    // Size Slider
+                    ListTile(
+                      leading: const Icon(Icons.photo_size_select_large, color: Colors.white70),
+                      title: const Text('Watermark Size', style: TextStyle(color: Colors.white)),
+                      subtitle: Slider(
+                        value: _watermarkSettings.scale,
+                        min: 0.5,
+                        max: 2.0,
+                        divisions: 15,
+                        label: '${(_watermarkSettings.scale * 100).toInt()}%',
+                        onChanged: (val) {
+                          setState(() {
+                            _watermarkSettings = _watermarkSettings.copyWith(scale: val);
+                          });
+                          setSheetState(() {});
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

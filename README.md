@@ -23,7 +23,7 @@
 * 📍 **Automatic Watermarking:** Automatically reads device GPS and stamps latitude, longitude, and actual street address directly onto your pictures.
 * 🧭 **Compass Heading:** Real-time magnetometer analysis indicating the direction the camera is facing (N, NW, SE, etc.).
 * 📐 **Smart Overlays:** Built-in **Rule of Thirds** grid overlay and active device angle sensors (gyroscope alignment) to capture perfect shots.
-* 🎨 **Themes & Configuration:** Seamlessly toggle between **Dark/Light** watermark themes, aspect ratios (16:9, 4:3), and corner placement natively from the settings.
+* 🎨 **Themes & Configuration:** Seamlessly toggle between **Dark/Light** watermark themes, aspect ratios (16:9, 4:3), adjustable **watermark size**, and corner placement natively from the settings.
 * 📱 **Cross-Platform:** Works right out of the box on both **Android & iOS**, requesting all the necessary permissions internally.
 
 ---
