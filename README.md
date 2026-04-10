@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/example/assets/banner.png" alt="Geo Tag Camera Banner" width="100%" height="auto" />
+  <img src="example/assets/banner.png" alt="Geo Tag Camera Banner" width="100%" height="auto" />
 </p>
 
 <h1 align="center">Geo Tag Camera 📸📍</h1>
@@ -30,10 +30,10 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/1.jpg" alt="Screenshot 1" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/2.jpg" alt="Screenshot 2" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/3.jpg" alt="Screenshot 3" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/4.jpg" alt="Screenshot 4" width="22%"/>
+  <img src="assets/1.jpg" alt="Screenshot 1" width="22%"/>
+  <img src="assets/2.jpg" alt="Screenshot 2" width="22%"/>
+  <img src="assets/3.jpg" alt="Screenshot 3" width="22%"/>
+  <img src="assets/4.jpg" alt="Screenshot 4" width="22%"/>
 </p>
 
 ---
