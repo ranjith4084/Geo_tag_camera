@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="example/assets/banner.png" alt="Geo Tag Camera Banner" width="100%" height="auto" />
+  <img src="assets/banner.png" alt="Geo Tag Camera Banner" width="800" style="max-width: 100%; height: auto;" />
 </p>
 
 <h1 align="center">Geo Tag Camera 📸📍</h1>
