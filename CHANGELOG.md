@@ -1,3 +1,6 @@
+## 1.0.1
+* Fixed broken image links in README for better visibility on pub.dev.
+
 ## 1.0.0+1
 
 * Initial Release of the `geo_tag_camera` package.
