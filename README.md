@@ -35,6 +35,9 @@
   <img src="assets/2.jpg" alt="Screenshot 2" width="22%"/>
   <img src="assets/3.jpg" alt="Screenshot 3" width="22%"/>
   <img src="assets/4.jpg" alt="Screenshot 4" width="22%"/>
+ <img src="assets/5.jpg" alt="Screenshot 5" width="22%"/>
+  <img src="assets/6.jpg" alt="Screenshot 6" width="22%"/>
+  <img src="assets/7.jpg" alt="Screenshot 7" width="22%"/>
 </p>
 
 ---
