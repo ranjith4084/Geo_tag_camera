@@ -8,13 +8,13 @@
 <p align="center">
   <a href="https://pub.dev/packages/geo_tag_camera"><img src="https://img.shields.io/pub/v/geo_tag_camera.svg?style=flat-square&color=blue" alt="Pub Version"></a>
   <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-%E2%9D%A4-red.svg?style=flat-square" alt="Flutter Love"></a>
-  <a href="https://github.com/ranjith4084/gps_camera/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="License: MIT"></a>
+  <a href="https://github.com/ranjith4084/Geo_tag_camera/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=flat-square" alt="License: MIT"></a>
 </p>
 
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/banner.png" alt="Geo Tag Camera Banner" width="800" style="max-width: 100%; height: auto;" />
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/banner.png" alt="Geo Tag Camera Banner" width="800" style="max-width: 100%; height: auto;" />
 </p>
 
 ## 🌟 Features
@@ -31,14 +31,14 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/2.jpg" alt="Screenshot 2" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/1.jpg" alt="Screenshot 1" width="22%"/>
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/2.jpg" alt="Screenshot 2" width="22%"/>
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/1.jpg" alt="Screenshot 1" width="22%"/>
 
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/3.jpg" alt="Screenshot 3" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/4.jpg" alt="Screenshot 4" width="22%"/>
- <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/5.jpg" alt="Screenshot 5" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/6.jpg" alt="Screenshot 6" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/gps_camera/main/assets/7.jpg" alt="Screenshot 7" width="22%"/>
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/3.jpg" alt="Screenshot 3" width="22%"/>
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/4.jpg" alt="Screenshot 4" width="22%"/>
+ <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/5.jpg" alt="Screenshot 5" width="22%"/>
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/6.jpg" alt="Screenshot 6" width="22%"/>
+  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/7.jpg" alt="Screenshot 7" width="22%"/>
 </p>
 
 ---
@@ -119,9 +119,7 @@ Add these keys to your `ios/Runner/Info.plist`:
 
 ## 👨‍💻 Author
 
-Built with ❤️ by [**Ranjith**](https://github.com/ranjith4084)  
-- **GitHub:** [@ranjith4084](https://github.com/ranjith4084)
-- **Portfolio:** [rebrand.ly/ranjith4084](https://rebrand.ly/ranjith4084)
+Built with ❤️ by [**Ranjith**](https://github.com/ranjith4084)
 
 If you found this package helpful, consider giving it a ⭐ on GitHub and a 👍 on [pub.dev](https://pub.dev)!
 

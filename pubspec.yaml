@@ -1,7 +1,7 @@
 name: geo_tag_camera
 description: A premium Flutter package for capturing photos with automatic geo-tagging, compass heading, and street address watermarks.
-repository: https://github.com/ranjith4084/gps_camera
-homepage: https://github.com/ranjith4084/gps_camera
+repository: https://github.com/ranjith4084/Geo_tag_camera
+homepage: https://github.com/ranjith4084/Geo_tag_camera
 topics:
   - camera
   - geo-tagging
@@ -21,7 +21,7 @@ topics:
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1
+version: 1.0.2
 
 environment:
   sdk: ^3.10.4
