@@ -31,8 +31,9 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="assets/1.jpg" alt="Screenshot 1" width="22%"/>
   <img src="assets/2.jpg" alt="Screenshot 2" width="22%"/>
+  <img src="assets/1.jpg" alt="Screenshot 1" width="22%"/>
+
   <img src="assets/3.jpg" alt="Screenshot 3" width="22%"/>
   <img src="assets/4.jpg" alt="Screenshot 4" width="22%"/>
  <img src="assets/5.jpg" alt="Screenshot 5" width="22%"/>
