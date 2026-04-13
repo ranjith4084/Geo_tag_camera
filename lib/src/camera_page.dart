@@ -191,6 +191,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
       await _controller!.setFlashMode(_flashMode);
       setState(() {});
     } catch (_) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Flash not supported on this lens')),
       );
@@ -298,7 +299,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                         },
                         color: Colors.grey,
                         selectedColor: Colors.white,
-                        fillColor: Colors.blueAccent.withOpacity(0.5),
+                        fillColor: Colors.blueAccent.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(8),
                         constraints: const BoxConstraints(minHeight: 36, minWidth: 60),
                         children: const [
@@ -326,7 +327,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                         },
                         color: Colors.grey,
                         selectedColor: Colors.white,
-                        fillColor: Colors.blueAccent.withOpacity(0.5),
+                        fillColor: Colors.blueAccent.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(8),
                         constraints: const BoxConstraints(minHeight: 36, minWidth: 60),
                         children: const [

@@ -1,9 +1,13 @@
 name: geo_tag_camera
-description: "A new Flutter project."
-repository: "https://github.com/ranjith/geo_tag_camera"
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+description: A premium Flutter package for capturing photos with automatic geo-tagging, compass heading, and street address watermarks.
+repository: https://github.com/ranjith4084/gps_camera
+homepage: https://github.com/ranjith4084/gps_camera
+topics:
+  - camera
+  - geo-tagging
+  - gps
+  - watermark
+  - location
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -32,11 +36,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  geolocator: ^10.1.0
-  geocoding: ^2.1.0
-  intl: ^0.19.0
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
+  intl: ^0.20.2
   path_provider: ^2.1.2
-  permission_handler: ^11.3.1
+  permission_handler: ^12.0.1
   camera: ^0.12.0+1
   sensors_plus: ^7.0.0
   gallery_saver_plus: ^3.2.9

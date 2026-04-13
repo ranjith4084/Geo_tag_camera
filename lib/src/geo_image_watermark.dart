@@ -55,7 +55,9 @@ class GeoImageWatermark {
     );
 
     /// Use background cached location or fallback to fetching
-    Position gps = cachedPosition ?? await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position gps = cachedPosition ?? await Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+    );
     String address = cachedAddress;
     
     if (address.isEmpty) {
