@@ -9,6 +9,23 @@ topics:
   - watermark
   - location
 
+screenshots:
+  - description: 'Main Camera UI with geo-tagging and compass direction.'
+    path: assets/1.jpg
+  - description: 'Full-screen Settings Page for watermarking customization.'
+    path: assets/2.jpg
+  - description: 'Street Address and Mini Map watermark options.'
+    path: assets/3.jpg
+  - description: 'Dark and Light watermark themes with layout options.'
+    path: assets/4.jpg
+  - description: 'Date, Time, and Compass formatting settings.'
+    path: assets/5.jpg
+  - description: 'Integrated Mini Map powered by OpenStreetMap.'
+    path: assets/6.jpg
+  - description: 'High-quality image capture with alignment grid.'
+    path: assets/7.jpg
+
+
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
@@ -67,21 +84,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  screenshots:
-    - description: 'Main Camera UI with geo-tagging and compass direction.'
-      path: assets/1.jpg
-    - description: 'Full-screen Settings Page for watermarking customization.'
-      path: assets/2.jpg
-    - description: 'Street Address and Mini Map watermark options.'
-      path: assets/3.jpg
-    - description: 'Dark and Light watermark themes with layout options.'
-      path: assets/4.jpg
-    - description: 'Date, Time, and Compass formatting settings.'
-      path: assets/5.jpg
-    - description: 'Integrated Mini Map powered by OpenStreetMap.'
-      path: assets/6.jpg
-    - description: 'High-quality image capture with alignment grid.'
-      path: assets/7.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
