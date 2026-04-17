@@ -89,6 +89,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     }
   }
 
+
   Future<void> _init() async {
     setState(() {
       _loading = true;
