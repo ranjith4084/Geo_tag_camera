@@ -53,7 +53,7 @@ To use `geo_tag_camera` in your project, add the dependency to your `pubspec.yam
 
 ```yaml
 dependencies:
-  geo_tag_camera: ^1.0.4
+  geo_tag_camera: ^1.0.6
 ```
 
 Then, run:
