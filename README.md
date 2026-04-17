@@ -30,6 +30,7 @@
   * 🗺️ **Map Overview:** Generate an API-Key-Free contextual Mini Map powered natively by OpenStreetMap and ESRI! Place it horizontally on the left or the right side of the watermark box seamlessly!
 * 📱 **Cross-Platform:** Works right out of the box on both **Android & iOS**, requesting all the necessary permissions internally.
 
+
 ---
 
 ## 📸 Screenshots
