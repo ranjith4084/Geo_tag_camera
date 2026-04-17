@@ -1,3 +1,9 @@
+## 1.0.3
+* Added `SettingsPage` to allow deep watermark customization (map type, alignment, font style, and positioning).
+* Fixed a "red screen" crash that occurred when location permissions were denied by the user.
+* Improved camera lifecycle management to properly handle app pauses/resumes during permission requests.
+* Enhanced null safety in the camera preview widget.
+
 ## 1.0.2
 * Updated repository and image URLs to match the GitHub repository rename to `Geo_tag_camera`.
 
