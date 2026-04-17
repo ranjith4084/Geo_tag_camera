@@ -23,7 +23,11 @@
 * 📍 **Automatic Watermarking:** Automatically reads device GPS and stamps latitude, longitude, and actual street address directly onto your pictures.
 * 🧭 **Compass Heading:** Real-time magnetometer analysis indicating the direction the camera is facing (N, NW, SE, etc.).
 * 📐 **Smart Overlays:** Built-in **Rule of Thirds** grid overlay and active device angle sensors (gyroscope alignment) to capture perfect shots.
-* 🎨 **Themes & Configuration:** Seamlessly toggle between **Dark/Light** watermark themes, aspect ratios (16:9, 4:3), adjustable **watermark size**, and corner placement natively from the settings.
+* 🚀 **Dedicated Settings UI:** A beautiful, full-screen configuration menu divided into logical topics:
+  * 🎨 **Layout & Style:** Toggle dark/light themes, aspect ratios (16:9, 4:3), watermark sizes, layout corners, and rich typography fonts.
+  * 📍 **Location Content:** Individually hide or show street addresses and GPS coordinates based on your privacy needs.
+  * 🕒 **Date & Time:** Complete control over 12/24 hour parameters along with DD/MM/YYYY, MM/DD/YYYY, and even custom formatting input.
+  * 🗺️ **Map Overview:** Generate an API-Key-Free contextual Mini Map powered natively by OpenStreetMap and ESRI! Place it horizontally on the left or the right side of the watermark box seamlessly!
 * 📱 **Cross-Platform:** Works right out of the box on both **Android & iOS**, requesting all the necessary permissions internally.
 
 ---
@@ -49,7 +53,7 @@ To use `geo_tag_camera` in your project, add the dependency to your `pubspec.yam
 
 ```yaml
 dependencies:
-  geo_tag_camera: ^1.0.1
+  geo_tag_camera: ^1.0.3
 ```
 
 Then, run:

@@ -11,6 +11,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'package:geo_tag_camera/src/camera_settings.dart';
+import 'package:geo_tag_camera/src/settings_page.dart';
 import 'package:geo_tag_camera/src/preview_page.dart';
 import 'package:geo_tag_camera/src/permission_service.dart';
 
@@ -75,12 +76,16 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
 
     if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
       _controller?.dispose();
+      _controller = null; // Important: Clear the reference after disposal
       _positionStream?.pause();
       _magnetometerStream?.pause();
     } else if (state == AppLifecycleState.resumed) {
-      _startCamera();
-      _positionStream?.resume();
-      _magnetometerStream?.resume();
+      // Only resume if permission was already granted
+      if (!_permissionDenied) {
+        _startCamera();
+        _positionStream?.resume();
+        _magnetometerStream?.resume();
+      }
     }
   }
 
@@ -128,6 +133,8 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         final place = (await placemarkFromCoordinates(position.latitude, position.longitude)).first;
         _cachedAddress = '${place.subLocality ?? ''}, ${place.locality ?? ''}, ${place.administrativeArea ?? ''}';
       } catch (_) {}
+    }, onError: (e) {
+      debugPrint("Location stream error: $e");
     });
 
     _magnetometerStream = magnetometerEventStream().listen((MagnetometerEvent event) {
@@ -252,154 +259,23 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     }
   }
 
-  void _showSettingsSheet() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.grey[900],
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) {
-        return StatefulBuilder(
-          builder: (context, setSheetState) {
-            return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Text('Watermark Settings', 
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 16),
-                    
-                    // Theme Toggle
-                    ListTile(
-                      leading: const Icon(Icons.palette, color: Colors.white70),
-                      title: const Text('Theme', style: TextStyle(color: Colors.white)),
-                      trailing: ToggleButtons(
-                        isSelected: [
-                          _watermarkSettings.theme == WatermarkTheme.dark,
-                          _watermarkSettings.theme == WatermarkTheme.light,
-                        ],
-                        onPressed: (index) {
-                          final newTheme = index == 0 ? WatermarkTheme.dark : WatermarkTheme.light;
-                          setState(() {
-                            _watermarkSettings = _watermarkSettings.copyWith(theme: newTheme);
-                          });
-                          setSheetState(() {});
-                        },
-                        color: Colors.grey,
-                        selectedColor: Colors.white,
-                        fillColor: Colors.blueAccent.withValues(alpha: 0.5),
-                        borderRadius: BorderRadius.circular(8),
-                        constraints: const BoxConstraints(minHeight: 36, minWidth: 60),
-                        children: const [
-                          Text('Dark'),
-                          Text('Light'),
-                        ],
-                      ),
-                    ),
-
-                    // Ratio Toggle
-                    ListTile(
-                      leading: const Icon(Icons.aspect_ratio, color: Colors.white70),
-                      title: const Text('Aspect Ratio', style: TextStyle(color: Colors.white)),
-                      trailing: ToggleButtons(
-                        isSelected: [
-                          _watermarkSettings.ratio == CameraRatio.ratio16_9,
-                          _watermarkSettings.ratio == CameraRatio.ratio4_3,
-                        ],
-                        onPressed: (index) {
-                          final newRatio = index == 0 ? CameraRatio.ratio16_9 : CameraRatio.ratio4_3;
-                          setState(() {
-                            _watermarkSettings = _watermarkSettings.copyWith(ratio: newRatio);
-                          });
-                          setSheetState(() {});
-                        },
-                        color: Colors.grey,
-                        selectedColor: Colors.white,
-                        fillColor: Colors.blueAccent.withValues(alpha: 0.5),
-                        borderRadius: BorderRadius.circular(8),
-                        constraints: const BoxConstraints(minHeight: 36, minWidth: 60),
-                        children: const [
-                          Text('16:9'),
-                          Text('4:3'),
-                        ],
-                      ),
-                    ),
-
-                    // Position
-                    ListTile(
-                      leading: const Icon(Icons.crop_free, color: Colors.white70),
-                      title: const Text('Position', style: TextStyle(color: Colors.white)),
-                      trailing: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[800],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: DropdownButton<WatermarkPosition>(
-                          dropdownColor: Colors.grey[800],
-                          value: _watermarkSettings.position,
-                          style: const TextStyle(color: Colors.white),
-                          underline: const SizedBox(), 
-                          icon: const Icon(Icons.arrow_drop_down, color: Colors.white),
-                          items: const [
-                            DropdownMenuItem(value: WatermarkPosition.bottomLeft, child: Text('Bottom Left')),
-                            DropdownMenuItem(value: WatermarkPosition.bottomRight, child: Text('Bottom Right')),
-                            DropdownMenuItem(value: WatermarkPosition.topLeft, child: Text('Top Left')),
-                            DropdownMenuItem(value: WatermarkPosition.topRight, child: Text('Top Right')),
-                          ],
-                          onChanged: (val) {
-                            if (val != null) {
-                              setState(() {
-                                _watermarkSettings = _watermarkSettings.copyWith(position: val);
-                              });
-                              setSheetState(() {});
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                    
-                    // Size Slider
-                    ListTile(
-                      leading: const Icon(Icons.photo_size_select_large, color: Colors.white70),
-                      title: const Text('Watermark Size', style: TextStyle(color: Colors.white)),
-                      subtitle: Slider(
-                        value: _watermarkSettings.scale,
-                        min: 0.5,
-                        max: 2.0,
-                        divisions: 15,
-                        label: '${(_watermarkSettings.scale * 100).toInt()}%',
-                        onChanged: (val) {
-                          setState(() {
-                            _watermarkSettings = _watermarkSettings.copyWith(scale: val);
-                          });
-                          setSheetState(() {});
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
+  Future<void> _openSettingsPage() async {
+    final result = await Navigator.push<WatermarkSettings>(
+      context,
+      MaterialPageRoute(builder: (context) => SettingsPage(initialSettings: _watermarkSettings)),
     );
+
+    if (result != null) {
+      setState(() {
+        _watermarkSettings = result;
+      });
+    }
   }
 
   Widget _buildCameraPreview() {
+    if (_controller == null || !_controller!.value.isInitialized) {
+      return const SizedBox.shrink();
+    }
     final previewAspect = 1 / _controller!.value.aspectRatio;
     final aspectTarget = _watermarkSettings.ratio == CameraRatio.ratio16_9 ? 9 / 16 : 3 / 4;
 
@@ -520,7 +396,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
             right: 60,
             child: IconButton(
               icon: const Icon(Icons.settings, color: Colors.white, size: 30),
-              onPressed: _isProcessing ? null : _showSettingsSheet,
+              onPressed: _isProcessing ? null : _openSettingsPage,
             ),
           ),
           Positioned(
