@@ -14,7 +14,7 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/banner.png" alt="Geo Tag Camera Banner" width="800" style="max-width: 100%; height: auto;" />
+  <img src="assets/banner.png" alt="Geo Tag Camera Banner" width="800" style="max-width: 100%; height: auto;" />
 </p>
 
 ## 🌟 Features
@@ -35,13 +35,13 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/1.jpg" alt="Screenshot 1" width="22%"/>
-<img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/2.jpg" alt="Screenshot 2" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/3.jpg" alt="Screenshot 3" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/4.jpg" alt="Screenshot 4" width="22%"/>
- <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/5.jpg" alt="Screenshot 5" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/6.jpg" alt="Screenshot 6" width="22%"/>
-  <img src="https://raw.githubusercontent.com/ranjith4084/Geo_tag_camera/main/assets/7.jpg" alt="Screenshot 7" width="22%"/>
+  <img src="assets/1.jpg" alt="Screenshot 1" width="22%"/>
+<img src="assets/2.jpg" alt="Screenshot 2" width="22%"/>
+  <img src="assets/3.jpg" alt="Screenshot 3" width="22%"/>
+  <img src="assets/4.jpg" alt="Screenshot 4" width="22%"/>
+ <img src="assets/5.jpg" alt="Screenshot 5" width="22%"/>
+  <img src="assets/6.jpg" alt="Screenshot 6" width="22%"/>
+  <img src="assets/7.jpg" alt="Screenshot 7" width="22%"/>
 </p>
 
 ---

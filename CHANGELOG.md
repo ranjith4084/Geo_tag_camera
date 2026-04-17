@@ -1,3 +1,7 @@
+## 1.0.4
+* Improved documentation quality by switching to relative image paths to ensure consistent synchronization between GitHub and pub.dev.
+* Fixed caching issues that caused old screenshots to be displayed on pub.dev.
+
 ## 1.0.3
 * Added `SettingsPage` to allow deep watermark customization (map type, alignment, font style, and positioning).
 * Fixed a "red screen" crash that occurred when location permissions were denied by the user.
