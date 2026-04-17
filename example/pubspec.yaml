@@ -2,7 +2,7 @@ name: example
 description: A sample app using geo_tag_camera package.
 
 publish_to: 'none'
-version: 1.0.4
+version: 1.0.5
 
 environment:
   sdk: '>=3.1.0 <4.0.0'

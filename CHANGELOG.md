@@ -1,3 +1,7 @@
+## 1.0.5
+* Fixed broken image links on `pub.dev` by switching to absolute GitHub URLs.
+* Added official screenshots metadata to `pubspec.yaml` for a high-quality gallery on the package page.
+
 ## 1.0.4
 * Improved documentation quality by switching to relative image paths to ensure consistent synchronization between GitHub and pub.dev.
 * Fixed caching issues that caused old screenshots to be displayed on pub.dev.
